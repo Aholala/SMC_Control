@@ -11,6 +11,8 @@
 
 三个位置扩展的公式、单位、阈值与接口见[位置扩展规格](docs/位置扩展数学规格与接入说明.md)。累计形式继续直接累计，不添加截断或冻结；终端分段阈值显式提供。
 
+按实际 ECF27 电机源码编写的[电机滑模接入教程](docs/ECF27电机滑模控制教程.md)，覆盖 Yaw、Pitch、拨弹、摩擦轮和底盘轮速，以及 DJI、DM、Cybergear、VESC、C615 的反馈和命令接口。配套[接口核查记录](docs/ECF27电机接口核查记录.md)与[主机调用示例](examples/ecf27_smc_example.cpp)；不代表已经完成实机接入。
+
 MATLAB 总验证入口为 `matlab/验证/run_checks.m`，速度单独验证为 `matlab/验证/run_velocity_checks.m`。`start.m` 默认教学；应用编号1为位置、2为速度。主机验证运行 `tests/verify_host.ps1`，STM32目标编译运行 `tests/verify_arm.ps1`。
 
 当前源码已通过13项主机测试、MATLAB独立计算与教学对象实验，以及M4/M7编译；尚未完成消费工程完整固件链接、上板或整车验证。教学和个人理解进度见[学习路线](docs/学习路线与MATLAB索引.md)。
