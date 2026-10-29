@@ -103,10 +103,13 @@ end
 smc_report.cases = smc_cases;
 smc_report.assumptions = '教学假设；瞬时执行输入；double 运动对象；dt=0.001s；非实测电机参数';
 smc_report.library_hashes = jsondecode(fileread(fullfile(smc_root,'build','host','host_verification.json'))).hashes;
+% 扩展分支独立验证；使用本次已经完成的十三项主机构建。
+smc_report.velocity = smc_verify_velocity(smc_root,false);
+smc_report.extensions = smc_verify_extensions(smc_root);
 smc_report.passed = true;
 smc_write_json(fullfile(smc_out,'验证报告.json'),smc_report);
 save(fullfile(smc_out,'验证数据.mat'),'smc_points','smc_expected','smc_delta','smc_report');
-fprintf('SMC MATLAB 验证通过：%d 个公式点、5 个闭环实验，每个 8000 次计算。\n',smc_report.point_count);
+fprintf('SMC MATLAB 验证通过：位置%d个公式点、5组闭环；速度4102次序列、6组闭环。\n',smc_report.point_count);
 fprintf('报告目录：%s\n',smc_out);
 
 function [command,details] = smc_formula(config,bounds,input)
